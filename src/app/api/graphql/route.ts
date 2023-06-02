@@ -13,7 +13,47 @@ const books = [
       author: 'Paul Auster',
     },
   ];
+
+
+  const course={
+    id:1,
+  courseName:"MCA",
+  category:"gen",
+  price:2000,
+  language:"Javascript",
+  email:"anuj@gmail.com",
+  teachingAssists:[{
+    firstName:"anuj",
+    lastName:"kumar",
+    experience:1
+  },{
+    firstName:"mohit",
+    lastName:"kumar",
+    experience:2
+  }]
+  }
 const typeDefs=gql`
+
+
+
+type Course {
+  id:ID
+  courseName:String
+  category:String
+  price:Int
+  language:String
+  email:String
+  teachingAssists:[TeachingAssist]
+}
+
+
+type TeachingAssist{
+  firstName:String
+  lastName:String
+  experience:Int
+}
+
+
 type Book {
     title: String
     author: String
@@ -21,11 +61,13 @@ type Book {
 
   type Query{
     books: [Book]
+    getCourse:Course
   }
 `
 const resolvers={
     Query:{
-        books:()=>books
+        books:()=>books,
+        getCourse:()=>course
     }
 }
 
